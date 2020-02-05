@@ -11,12 +11,12 @@
 #THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ###################################################################
-# Madagascar v2.0 build on Ubuntu 18.04 
+# Ubuntu base image
 ###################################################################
 FROM ubuntu:18.04
 
 ###################################################################
-# Install some basic pre-requisites
+# Install some basic pre-requisites and build SU
 ###################################################################
 
 RUN apt-get update && apt-get install -y \
@@ -41,10 +41,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get autoremove -y \
     && apt-get autoclean -y
 
-ENV PYTHONPATH "${PYTHONPATH}:/usr/local/lib/python3.6/dist-packages/"
-ENV PYTHONPATH "${PYTHONPATH}:/usr/local/lib/python3.6/site-packages/"
-ENV LD_LIBRARY_PATH "${LD_LIBRARY_PATH}:/usr/local/lib/:/usr/local/lib/python3.6/dist-packages/:/usr/local/lib/python3.6/site-packages/"
-
-
+ENV PATH "${PATH}:/root/cwp/bin"
+ENV LD_LIBRARY_PATH  "${LD_LIBRARY_PATH}:/root/cwp/lib"
 
 
